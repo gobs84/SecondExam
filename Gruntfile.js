@@ -41,7 +41,19 @@ module.exports = function(grunt){
             }
         });      
     });
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
+        
+    grunt.initConfig({
+        jasmine: {
+            JS: {
+               src: 'js/*.js',
+               options: {
+                 specs: 'spec/*.spec.js'
+               }
+            }
+        }
+    });
 
     grunt.registerTask('build',
-        ['generateIndex','generatep1','generatep2']);
+        ['generateIndex','generatep1','generatep2','jasmine']);    
   };

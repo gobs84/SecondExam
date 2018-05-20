@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Config from '../../../config.json'
 
 @Component({
   selector: 'app-content',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
+
+  public bodyContent = Config.freeContent.body;
 
   constructor() { }
 

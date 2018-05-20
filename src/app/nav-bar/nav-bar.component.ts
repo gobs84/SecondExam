@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-import '../../../js/visibilityToggle.js'
+import Config from '../../../config.json'
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,6 +7,8 @@ import '../../../js/visibilityToggle.js'
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
+
+  hidden = Config.enablePageTwoLink;
 
   constructor() { }
 

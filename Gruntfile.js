@@ -1,7 +1,8 @@
 module.exports = function(grunt){
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    //var config = grunt.file.readJSON('config.json');
-    var config = grunt.file.readJSON(grunt.option('config') || 'config.json')
+    var configFileName = grunt.option('config') || 'config.json';
+    var dataFileName = grunt.option('data') || 'data.json';
+    var config = grunt.file.readJSON(configFileName);
+    var data = grunt.file.readJSON(dataFileName);
  
     grunt.registerTask('generateIndex', function(){
           grunt.file.copy('index.html', config.buildFolder+'/index.html',{ 
@@ -17,12 +18,14 @@ module.exports = function(grunt){
     });
     
     grunt.registerTask('generatep1', function(){
-        grunt.file.copy('page1.html', config.buildFolder+'/'+config.pageOneName+'.html',{ 
+        grunt.file.copy('src/app/cards/cards.component.html', config.buildFolder+'/'+config.pageOneName+'.html',{ 
             process: function(files){
                 return grunt.template.process(files,
                 {
                       data: {
-                        appName:config.appName
+                        users: "users",
+                        dataFileName: dataFileName,
+                        configFileName: configFileName
                     }
                 });
             }

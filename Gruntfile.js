@@ -16,6 +16,13 @@ module.exports = function(grunt){
               }
           });      
     });
+
+    grunt.registerTask('generateFile',function(FileName,newName) {
+        grunt.file.copy(FileName,newName)
+    })
+
+    grunt.registerTask('reNameJsons',['generateFile:' + configFileName + ':config.json','generateFile:' + dataFileName + ':data.json']);
+
     
     grunt.registerTask('generatep1', function(){
         grunt.file.copy('src/app/cards/cards.component.html', config.buildFolder+'/'+config.pageOneName+'.html',{ 
@@ -56,6 +63,8 @@ module.exports = function(grunt){
             }
         }
     });
+
+    grunt.registerTask('coolBuild',['reNameJsons','generatep1']);
 
     grunt.registerTask('build',
         ['generateIndex','generatep1','generatep2','jasmine']);    

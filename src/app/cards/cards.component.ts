@@ -11,13 +11,14 @@ export class CardsComponent implements OnInit {
 
   users: any[];
   length: number;
-  constructor() { }
+
+  constructor() {
+}
 
   ngOnInit() {
     this.users = data.users;
     this.length = this.users.length;
-    console.log(this.length);
-    for(var i=0; i<this.length;i++){
+    for(var i=0; i<this.length;i++){  
       if(this.users[i].avatar_url == "") {
         this.users[i].avatar_url = "http://lightbox.vc/assets/admin/images/users/avatar-1.jpeg";
       }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import data from '../../../data.json';
-import config from '../../../config.json';
 
 @Component({
   selector: 'app-cards',

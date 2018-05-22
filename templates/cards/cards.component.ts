@@ -4,7 +4,7 @@ import config from '../../../config.json';
 
 @Component({
   selector: 'app-cards',
-  templateUrl: '/pageOne.html',
+  templateUrl: '<%=path%>',
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {

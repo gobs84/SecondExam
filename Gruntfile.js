@@ -4,8 +4,8 @@ module.exports = function(grunt){
     var config = grunt.file.readJSON(configFileName);
     var data = grunt.file.readJSON(dataFileName);
  
-    grunt.registerTask('generateIndex', function(){
-          grunt.file.copy('index.html', config.buildFolder+'/index.html',{ 
+    grunt.registerTask('generateIndex', function(dest){
+          grunt.file.copy('templates/index.html', dest,{ 
               process: function(files){
                   return grunt.template.process(files,
                   {
@@ -21,23 +21,35 @@ module.exports = function(grunt){
         grunt.file.copy(FileName,newName)
     })
 
-    grunt.registerTask('reNameJsons',['generateFile:' + configFileName + ':config.json','generateFile:' + dataFileName + ':data.json']);
-
-    
-    grunt.registerTask('generatep1', function(){
-        grunt.file.copy('src/app/cards/cards.component.html', config.buildFolder+'/'+config.pageOneName+'.html',{ 
+    grunt.registerTask('generateTs',function(dest){
+        grunt.file.copy('templates/cards/cards.component.ts',dest,{
+            process: function(files) {
+                return grunt.template.process(files,
+                {
+                    data: {
+                        path: '/' + config.pageOneName + '.html'
+                    }
+                })
+            }
+        })
+    });
+    grunt.registerTask('generateHtml', function(dest){
+        grunt.file.copy('templates/cards/cards.component.html', dest,{ 
             process: function(files){
                 return grunt.template.process(files,
                 {
                       data: {
-                        users: "users",
-                        dataFileName: dataFileName,
-                        configFileName: configFileName
+                        users: "users"
                     }
                 });
             }
         });      
     });
+
+    grunt.registerTask('generateTs1',['generateTs:' + config.buildFolder + '/cards.component.ts','generateTs:src/app/cards/cards.component.ts']);
+    grunt.registerTask('generateHtml1',['generateHtml:' + config.buildFolder + '/' + config.pageOneName + '.html','generateHtml:src/app/cards/' + config.pageOneName + '.html']);
+    grunt.registerTask('copyIndex',['generateIndex:'+config.buildFolder + '/index.html','generateIndex:src/index.html']);
+    grunt.registerTask('reNameJsons',['generateFile:' + configFileName + ':config.json','generateFile:' + dataFileName + ':data.json']);
 
     grunt.registerTask('generatep2', function(){
         grunt.file.copy('page2.html', config.buildFolder+'/'+config.pageTwoName+'.html',{ 
@@ -64,7 +76,7 @@ module.exports = function(grunt){
         }
     });
 
-    grunt.registerTask('coolBuild',['reNameJsons','generatep1']);
+    grunt.registerTask('coolBuild',['copyIndex','generateTs1','generateHtml1']);
 
     grunt.registerTask('build',
         ['generateIndex','generatep1','generatep2','jasmine']);    

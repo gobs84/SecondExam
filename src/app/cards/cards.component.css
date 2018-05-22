@@ -1,0 +1,26 @@
+/* aqui se puede modificar el estilo de la tarjeta*/
+#card-1 {
+
+	display: inline-grid;
+	margin: 50px;
+	width: 250px;
+	left: 100px;
+	right: 50px;
+	top: 100px;
+
+}
+
+img {
+
+	height: 200px;
+	width: 100%;
+	display: block;
+
+}
+
+a {
+
+	color: gray;
+	font-weight: bold;
+
+}

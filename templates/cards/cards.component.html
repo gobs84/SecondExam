@@ -1,0 +1,11 @@
+<div *ngFor="let user of <%=users%>" class="card mb-3" id="card-1">
+    <h3 class="card-header">User</h3>
+    <div class="card-body">
+      <h5 class="card-title">{{user.name}}</h5>
+      <h6 class="card-subtitle text-muted">{{user.nickName}}</h6>
+    </div>
+    <img src="{{user.avatar_url}}">
+      <div class="card-body">
+      <a href="{{user.github_url}}" target="_blank" class="card-link">GitHub Link</a>
+       </div>
+</div>

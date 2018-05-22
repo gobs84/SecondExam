@@ -1,46 +1,42 @@
 module.exports = function(grunt){
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    //var config = grunt.file.readJSON('config.json');
-    var config = grunt.file.readJSON(grunt.option('config') || 'config.json')
- 
-    grunt.registerTask('generateIndex', function(){
-          grunt.file.copy('index.html', config.buildFolder+'/index.html',{ 
-              process: function(files){
-                  return grunt.template.process(files,
-                  {
-                        data: {
-                          appName:config.appName
-                      }
-                  });
-              }
-          });      
-    });
     
-    grunt.registerTask('generatep1', function(){
-        grunt.file.copy('page1.html', config.buildFolder+'/'+config.pageOneName+'.html',{ 
+    var configFileName = grunt.option('config') || 'config.json';
+    var config = grunt.file.readJSON(configFileName);
+
+    var templateTsPath2 = 'templates/content/content.component.ts';
+    var templateHtmlPath2 = 'templates/content/content.component.html';
+    
+    grunt.registerTask('generateTs',function(src,dest){
+        grunt.file.copy(src,dest,{
+            process: function(files) {
+                return grunt.template.process(files,
+                {
+                    data: {
+                        htmlPath2: '/' + config.pageTwoName + '.html',
+                        configFilePath: '../../../' + configFileName
+                    }
+                })
+            }
+        })
+    });
+    grunt.registerTask('generateHtml', function(src,dest){
+        grunt.file.copy(src, dest,{ 
             process: function(files){
                 return grunt.template.process(files,
                 {
                       data: {
-                        appName:config.appName
+                        users: "users"
                     }
                 });
             }
         });      
     });
 
-    grunt.registerTask('generatep2', function(){
-        grunt.file.copy('page2.html', config.buildFolder+'/'+config.pageTwoName+'.html',{ 
-            process: function(files){
-                return grunt.template.process(files,
-                {
-                      data: {
-                        appName:config.appName
-                    }
-                });
-            }
-        });      
-    });
+    grunt.registerTask('generateTs2',['generateTs:'+ templateTsPath2 + ':' + config.buildFolder + '/content.component.ts',
+                                    'generateTs:'+ templateTsPath2 + ':src/app/content/content.component.ts']);
+    grunt.registerTask('generateHtml2',['generateHtml:'+ templateHtmlPath2 + ':' + config.buildFolder + '/' + config.pageTwoName + '.html',
+                                        'generateHtml:' + templateHtmlPath2 + ':src/app/content/' + config.pageTwoName + '.html']);
+   
     grunt.loadNpmTasks('grunt-contrib-jasmine');
         
     grunt.initConfig({
@@ -55,5 +51,5 @@ module.exports = function(grunt){
     });
 
     grunt.registerTask('build',
-        ['generateIndex','generatep1','generatep2','jasmine']);    
+        ['generateTs2','generateHtml2','jasmine']);    
   };

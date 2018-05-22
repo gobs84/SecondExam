@@ -5,6 +5,7 @@ module.exports = function(grunt){
 
     var templateTsPath2 = 'templates/content/content.component.ts';
     var templateHtmlPath2 = 'src/app/content/content.component.html';
+    var templateTsNavbar = 'templates/nav-bar/nav-bar.component.ts';
     
     grunt.registerTask('generateTs',function(src,dest){
         grunt.file.copy(src,dest,{
@@ -14,7 +15,8 @@ module.exports = function(grunt){
                     data: {
                         htmlPath2: '../../../' + config.buildFolder + '/' + config.pageTwoName + '.html',
                         PageTwotitle: config.freeContent.title,
-                        PageTwobody: config.freeContent.body
+                        PageTwobody: config.freeContent.body,
+                        enablePage: config.enablePageTwoLink
                     }
                 })
             }
@@ -33,22 +35,10 @@ module.exports = function(grunt){
         });      
     });
 
-    grunt.registerTask('generateTs2',['generateTs:'+ templateTsPath2 + ':src/app/content/content.component.ts']);
+    grunt.registerTask('generateTs2',['generateTs:'+ templateTsPath2 + ':src/app/content/content.component.ts',
+                                        'generateTs:'+ templateTsNavbar + ':src/app/nav-bar/nav-bar.component.ts']);
     grunt.registerTask('generateHtml2',['generateHtml:'+ templateHtmlPath2 + ':' + config.buildFolder + '/' + config.pageTwoName + '.html']);
-   
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-        
-    grunt.initConfig({
-        jasmine: {
-            JS: {
-               src: 'js/*.js',
-               options: {
-                 specs: 'spec/*.spec.js'
-               }
-            }
-        }
-    });
 
-    grunt.registerTask('build',
-        ['generateTs2','generateHtml2','jasmine']);    
-  };
+    grunt.registerTask('build',['generateTs2','generateHtml2']);
+
+};

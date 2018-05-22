@@ -1,4 +1,5 @@
 {
+  
 	"buildFolder":"build",
 	"appName": "Second Exam",
 	"pageOneName": "pageOne",
@@ -8,4 +9,5 @@
 		"title": "Page Two Title",
 		"body": "Some Cool Stuff"
 	}
+  
 }

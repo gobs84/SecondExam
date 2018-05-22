@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import Config from '../../../config.json'
+import Config from '../../../config.json';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-content',
-  templateUrl: '/pageTwo.html',
+  templateUrl: '../../../build/pageTwo.html',
   styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {

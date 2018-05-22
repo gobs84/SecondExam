@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Config from '<%=configFilePath%>'
+import Config from '<%=configFilePath%>';
 import { Title } from '@angular/platform-browser';
 
 @Component({

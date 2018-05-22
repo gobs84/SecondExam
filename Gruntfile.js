@@ -13,7 +13,8 @@ module.exports = function(grunt){
                 {
                     data: {
                         htmlPath2: '../../../' + config.buildFolder + '/' + config.pageTwoName + '.html',
-                        configFilePath: '../../../' + configFileName
+                        PageTwotitle: config.freeContent.title,
+                        PageTwobody: config.freeContent.body
                     }
                 })
             }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import Config from '../../../config.json';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -9,8 +8,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class ContentComponent implements OnInit {
 
-  public bodyContent = Config.freeContent.body;
-  title = Config.freeContent.title;
+  public bodyContent = 'Some Cool Stuff';
+  title = 'Page Two Title';
 
   constructor(private titleService: Title ) {
 

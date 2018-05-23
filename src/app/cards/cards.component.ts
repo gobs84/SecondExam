@@ -3,7 +3,7 @@ import data from '../../../data.json';
 
 @Component({
   selector: 'app-cards',
-  templateUrl: '/pageOne.html',
+  templateUrl: '../../../build/pageOne.html',
   styleUrls: ['./cards.component.css']
 })
 export class CardsComponent implements OnInit {

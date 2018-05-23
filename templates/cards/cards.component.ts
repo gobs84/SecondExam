@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import data from '<%=dataFilePath%>';
+import data from '<%= dataFilePath %>';
 
 @Component({
   selector: 'app-cards',

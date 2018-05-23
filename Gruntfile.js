@@ -30,11 +30,12 @@ module.exports = function(grunt) {
                 return grunt.template.process(files,
                 {
                     data: {
-                        htmlPath: '/' + config.pageOneName + '.html',
+                        htmlPath: '../../../' + config.buildFolder + '/' + config.pageOneName + '.html',
                         htmlPath2: '../../../' + config.buildFolder + '/' + config.pageTwoName + '.html',
                         PageTwotitle: config.freeContent.title,
                         PageTwobody: config.freeContent.body,
-                        enablePage: config.enablePageTwoLink
+                        enablePage: config.enablePageTwoLink,
+                        dataFilePath: '../../../' + dataFileName
                     }
                 })
             }
@@ -56,12 +57,17 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('copyIndex',['generateIndex:'+config.buildFolder + '/index.html','generateIndex:src/index.html']);
+
     grunt.registerTask('generateTs1',['generateTs:'+ templateTsPath1 + ':' + config.buildFolder + '/cards.component.ts',
                                     'generateTs:'+ templateTsPath1 + ':src/app/cards/cards.component.ts']);
-    grunt.registerTask('generateHtml1',['generateHtml:'+ templateHtmlPath1 + ':' + config.buildFolder + '/' + config.pageOneName + '.html',
-                                        'generateHtml:' + templateHtmlPath1 + ':src/app/cards/' + config.pageOneName + '.html']);
+
+    grunt.registerTask('generateHtml1',['generateHtml:'+ templateHtmlPath1 + ':' + config.buildFolder + '/' + config.pageOneName + '.html']);
+
     grunt.registerTask('generateTs2',['generateTs:'+ templateTsPath2 + ':src/app/content/content.component.ts',
-                                        'generateTs:'+ templateTsNavbar + ':src/app/nav-bar/nav-bar.component.ts']);
+                                        'generateTs:'+ templateTsPath2 + ':' + config.buildFolder + '/content.component.ts',
+                                        'generateTs:'+ templateTsNavbar + ':src/app/nav-bar/nav-bar.component.ts',
+                                        'generateTs:'+ templateTsNavbar + ':' + config.buildFolder + '/nav-bar.component.ts']);
+
     grunt.registerTask('generateHtml2',['generateHtml:'+ templateHtmlPath2 + ':' + config.buildFolder + '/' + config.pageTwoName + '.html']);
 
     grunt.registerTask('build',['copyIndex','generateTs1','generateHtml1','generateTs2','generateHtml2']);    

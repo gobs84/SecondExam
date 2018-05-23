@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import data from '<%= dataFilePath %>';
 
 @Component({
   selector: 'app-cards',
   templateUrl: '<%=htmlPath%>',
   styleUrls: ['./cards.component.css']
 })
+
 export class CardsComponent implements OnInit {
 
+  data: any;
   users: any[];
   length: number;
 
@@ -15,7 +16,8 @@ export class CardsComponent implements OnInit {
 }
 
   ngOnInit() {
-    this.users = data.users;
+    this.data = <%=data%>;
+    this.users = this.data.users;
     this.length = this.users.length;
     for(var i=0; i<this.length;i++){  
       if(this.users[i].avatar_url == "") {

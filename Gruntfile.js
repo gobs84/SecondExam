@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                         PageTwotitle: config.freeContent.title,
                         PageTwobody: config.freeContent.body,
                         enablePage: config.enablePageTwoLink,
-                        dataFilePath: '../../../' + dataFileName
+                        data: JSON.stringify(data)
                     }
                 })
             }

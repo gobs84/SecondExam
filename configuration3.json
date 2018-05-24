@@ -1,0 +1,11 @@
+{
+	"buildFolder":"build",
+	"appName": "Final",
+	"pageOneName": "users",
+	"pageTwoName": "free",
+	"enablePageTwoLink": true,
+	"freeContent": {
+		"title": "Put a title here...",
+		"body": "You are viewing a free conten."
+	}
+}
